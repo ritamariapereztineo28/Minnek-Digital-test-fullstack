@@ -1,4 +1,4 @@
-const arrTest1 = [
+const arr = [
   "n",
   2, //%
   "&",
@@ -8,7 +8,7 @@ const arrTest1 = [
   "$",
   "q",
   47,
-  "i",//$
+  "i", //$
   "a",
   "j",
   "b",
@@ -20,20 +20,20 @@ const arrTest1 = [
 const spliceFunction = (result, addPosition, value) => {
   result.splice(addPosition, 0, value);
 };
-const arrReverse = (arr, reverseResult = [], arr3 = []) => {
+const arrReverse = (arr, inverseArray = [], specialCharactersArr = []) => {
   arr.map((i) => {
-    const validationArr = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(i);
-    if (validationArr === false) {
-      reverseResult.push(i);
+    const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(i);
+    if (specialCharacters === false) {
+      inverseArray.push(i);
     } else {
-      arr3.push(i);
+      specialCharactersArr.push(i);
     }
   });
-  const result = reverseResult.reverse();
-  spliceFunction(result, 2, arr3[0]);
-  spliceFunction(result, 6, arr3[1]);
-  spliceFunction(result, 14, arr3[2]);
+  const result = inverseArray.reverse();
+  spliceFunction(result, 2, specialCharactersArr[0]);
+  spliceFunction(result, 6, specialCharactersArr[1]);
+  spliceFunction(result, 14, specialCharactersArr[2]);
 
-  console.log("El resultado esperado es : ",result)
+  console.log("El resultado esperado es : ", result);
 };
-arrReverse(arrTest1,[],[]);
+arrReverse(arr, [], []);
