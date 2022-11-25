@@ -16,7 +16,7 @@ const arr: any = [
   "%",
   8,
 ];
-const spliceFunction = (result: any, addPosition: any, value: any) => {
+const spliceFunction = (result: any, addPosition: number, value: any) => {
   result.splice(addPosition, 0, value);
 };
 const arrReverse = (
@@ -35,7 +35,7 @@ const arrReverse = (
       specialCharactersArr.push(i);
     }
   });
-  const result = inverseArray.reverse();
+  const result: any = inverseArray.reverse();
   spliceFunction(
     result,
     positionSpecialCharactersArr[0],
