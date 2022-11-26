@@ -3,7 +3,7 @@ import "../Card/index.css";
 
 export const Card = () => {
   const [data, setData] = useState();
-  
+
   const getDataAPI = async () => {
     await fetch(" https://api.thedogapi.com/v1/breeds?limit=12", {
       method: "GET",
@@ -23,14 +23,10 @@ export const Card = () => {
   return (
     <div className={"container"}>
       {data &&
-        data.map(({ name }) => (
-          <div className={"card"}>
-            <img src="" alt="Avatar" />
-            <div className="container">
-              <h4>
-                <b>{name}</b>
-              </h4>
-            </div>
+        data.map(({ name, image }) => (
+          <div className={"card"} >
+            <img className={"img"} src={image.url} alt="Avatar" />
+            <p>{name}</p>
           </div>
         ))}
     </div>
