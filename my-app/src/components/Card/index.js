@@ -5,7 +5,7 @@ export const Card = () => {
   const [data, setData] = useState();
 
   const getDataAPI = async () => {
-    await fetch(" https://api.thedogapi.com/v1/breeds?limit=12", {
+    await fetch(" https://api.thedogapi.com/v1/breeds?limit=10", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
