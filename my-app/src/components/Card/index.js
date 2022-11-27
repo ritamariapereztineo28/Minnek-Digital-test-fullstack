@@ -10,8 +10,7 @@ export const Card = () => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "x-api-key":
-          "live_ySq2ChwliEVYaLevOo41OMIC47mMdvkk2lhVf1M2PMtBaRNyw41r95GcPqKsvmhw",
+        "x-api-key": process.env.REACT_APP_API_KEY,
       },
     })
       .then((res) => res.json())
@@ -23,8 +22,8 @@ export const Card = () => {
   return (
     <div className={"container"}>
       {data &&
-        data.map(({ name, image }) => (
-          <div className={"card"} >
+        data.map(({ name, image }, key) => (
+          <div className={"card"} key={key}>
             <img className={"img"} src={image.url} alt="Avatar" />
             <p>{name}</p>
           </div>
