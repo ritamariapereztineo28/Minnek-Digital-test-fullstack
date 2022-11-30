@@ -10,11 +10,6 @@ export default makeStyles((theme) => ({
     backgroundColor: "#FFFFFF",
     padding: "6% 2% 6% 2%",
   },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-  },
   input: {
     margin: "2% 0 2% 0",
   },
