@@ -4,7 +4,11 @@ import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 
 export const Form = () => {
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const classes = useStyles();
 
   const onSubmit = (data) => {
@@ -23,8 +27,19 @@ export const Form = () => {
               {...field}
               label="Nombre"
               variant="outlined"
+              error={Boolean(errors.name)}
+              helperText={errors.name && errors.name.message}
             />
           )}
+          rules={{
+            required: "Este campo es requerido",
+            pattern: {
+              value:
+                /^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g,
+              message:
+                "Este campo solo permite letras, no permite espacios al inicio o final de lo digitado",
+            },
+          }}
         />
         <Controller
           name="price"
@@ -36,8 +51,18 @@ export const Form = () => {
               {...field}
               label="Precio"
               variant="outlined"
+              error={Boolean(errors.price)}
+              helperText={errors.price && errors.price.message}
             />
           )}
+          rules={{
+            required: "Este campo es requerido",
+            pattern: {
+              value: /^[0-9]+([.,][0-9]+)?$/,
+              message:
+                "Este campo solo permite números o decimales, no permite espacios al inicio o final de lo digitado",
+            },
+          }}
         />
         <Controller
           name="description"
@@ -49,8 +74,18 @@ export const Form = () => {
               {...field}
               label="Descripción"
               variant="outlined"
+              error={Boolean(errors.description)}
+              helperText={errors.description && errors.description.message}
             />
           )}
+          rules={{
+            required: "Este campo es requerido",
+            pattern: {
+              value: /^\S[0-9a-zA-Z ]+$/,
+              message:
+                "Este campo solo permite letras y números, no permite espacios al inicio o final de lo digitado",
+            },
+          }}
         />
 
         <Button type="submit" variant="outlined">
