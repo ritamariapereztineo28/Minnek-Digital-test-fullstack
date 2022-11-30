@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1em));
+  justify-content: center;
+}
+.card {
+  color: rgb(255, 255, 255);
+  grid-row: auto / span 2;
+  display: grid;
+  grid-template-rows: subgrid;
+  align-items: unset;
+}
+.img {
+  border: 5px solid transparent;
+  border-radius: 1em;
+  width: 100%;
+  height: 200px;
+}
+.img:hover {
+  opacity: 0.5;
+}
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+.container .breeds {
+  opacity: 0;
+  display: none;
+}
+.container img:hover ~ .breeds {
+  opacity: 1;
+  display: block;
+  position: absolute;
+  transform: translate(50%, 50%);
+}
+@media only screen and (max-width: 740px) {
+  .container img:hover ~ .breeds {
+    transform: translate(60%, 50%);
+    font-size: 25px;
+  }
+}
