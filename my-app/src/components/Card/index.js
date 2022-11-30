@@ -25,13 +25,14 @@ export const Card = () => {
 
     let arr = [];
     data &&
+    // eslint-disable-next-line
       data.map(({ breed_group }) => {
         if (breed_group && arr.length < 3) {
           arr.push(breed_group);
           setThreeFirstBreeds(arr);
         }
       });
-  }, []);
+  }, [data]);
 
   return (
     <div className={"container"}>
