@@ -2,8 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
-// import { Login } from "../Login";
-import { post } from "../../fetch/index";
+import { post } from "../../fetch";
 
 export const Form = () => {
   const {
@@ -15,11 +14,12 @@ export const Form = () => {
 
   const onSubmit = (data) => {
     post("/product", data);
+    window.location.reload()
   };
+
   return (
     <>
       <Card className={classes.container}>
-        {/* <Login container={classes.container} input={classes.input} /> */}
         <form onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="name"
