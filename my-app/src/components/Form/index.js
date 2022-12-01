@@ -9,12 +9,13 @@ export const Form = () => {
     control,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
   const classes = useStyles();
 
   const onSubmit = (data) => {
     post("/product", data);
-    window.location.reload()
+    // window.location.reload();
   };
 
   return (

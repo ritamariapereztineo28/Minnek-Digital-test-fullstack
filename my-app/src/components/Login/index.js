@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 import { Link } from "react-router-dom";
+import { post } from "../../fetch";
 
 export const Login = (input) => {
   const {
@@ -13,13 +14,18 @@ export const Login = (input) => {
   const classes = useStyles();
 
   const onSubmit = (data) => {
-    console.log(JSON.stringify(data));
+    post("/login", data)
+      .then((res) => res.json())
+      .then(({ token }) => {
+        localStorage.setItem("auth_token", token);
+      });
+    // console.log(JSON.stringify(data));
   };
   return (
     <Card className={classes.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="username"
+          name="name"
           control={control}
           render={({ field }) => (
             <TextField
@@ -29,8 +35,8 @@ export const Login = (input) => {
               {...field}
               label="Usuario"
               variant="outlined"
-              error={Boolean(errors.username)}
-              helperText={errors.username && errors.username.message}
+              error={Boolean(errors.name)}
+              helperText={errors.name && errors.name.message}
             />
           )}
           rules={{
@@ -66,7 +72,7 @@ export const Login = (input) => {
         />
 
         <Button type="submit" variant="outlined">
-            Login
+          Login
         </Button>
       </form>
     </Card>
