@@ -1,6 +1,5 @@
 const mongooseDB = require("mongoose");
 const { DATABASE } = require("./config-env.ts");
-// console.log("La base de datos es llamada: ",DATABASE)
 const URI = `mongodb://localhost:27017/${DATABASE}`;
 const userSchema = require("./database/models/user");
 mongooseDB
