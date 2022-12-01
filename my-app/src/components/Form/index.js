@@ -3,6 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 // import { Login } from "../Login";
+import { post } from "../../fetch/index";
 
 export const Form = () => {
   const {
@@ -13,7 +14,7 @@ export const Form = () => {
   const classes = useStyles();
 
   const onSubmit = (data) => {
-    console.log(JSON.stringify(data));
+    post("/product", data);
   };
   return (
     <>
