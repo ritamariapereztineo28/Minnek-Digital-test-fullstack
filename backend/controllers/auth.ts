@@ -8,6 +8,6 @@ export const auth = async (req: any, res: any, next: any) => {
     Object.assign(req, { authEntity });
     next();
   } catch (error) {
-    res.status(500).send({ message: "Acceso denegado" });
+    res.status(403).send({ message: "Acceso denegado" });
   }
 };

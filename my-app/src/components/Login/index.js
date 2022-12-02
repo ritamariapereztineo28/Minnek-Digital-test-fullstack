@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { post } from "../../fetch";
+import User from "../../helpers/User";
 
-export const Login = (input) => {
+export const Login = () => {
   const {
     control,
     handleSubmit,
@@ -13,17 +14,21 @@ export const Login = (input) => {
   } = useForm();
   const classes = useStyles();
   const [message, setMessage] = useState("");
+
   const onSubmit = (data) => {
     post("/login", data)
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json();
+      })
       .then(({ token, message }) => {
         setMessage(message);
+        localStorage.setItem("auth_token", token);
         if (token) {
-          localStorage.setItem("auth_token", token);
+          window.location = "/form";
         }
       });
-    // console.log(JSON.stringify(data));
   };
+
   return (
     <Card className={classes.container}>
       <form onSubmit={handleSubmit(onSubmit)}>

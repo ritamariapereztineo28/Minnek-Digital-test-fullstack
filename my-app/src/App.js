@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
         <Switch>
-          <PrivateRoute exact path="/products" component={Products} />
+          {/* <PrivateRoute exact path="/products" component={Products} /> */}
           <PrivateRoute exact path="/form" component={Form} />
           <Route path="/" component={Login} />
           <Route path="*" component={Login} />

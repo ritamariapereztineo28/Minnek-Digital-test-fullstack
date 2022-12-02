@@ -3,19 +3,24 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 import { post } from "../../fetch";
+import User from "../../helpers/User";
 
 export const Form = () => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm();
   const classes = useStyles();
 
   const onSubmit = (data) => {
-    post("/product", data);
-    // window.location.reload();
+    post("/product", data).then(({ status }) => {
+      if (status === 403) {
+        User.logout();
+      } else {
+        window.location = "/products";
+      }
+    });
   };
 
   return (
