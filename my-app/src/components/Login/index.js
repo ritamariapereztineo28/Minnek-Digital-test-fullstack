@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
@@ -12,12 +12,15 @@ export const Login = (input) => {
     formState: { errors },
   } = useForm();
   const classes = useStyles();
-
+  const [message, setMessage] = useState("");
   const onSubmit = (data) => {
     post("/login", data)
       .then((res) => res.json())
-      .then(({ token }) => {
-        localStorage.setItem("auth_token", token);
+      .then(({ token, message }) => {
+        setMessage(message);
+        if (token) {
+          localStorage.setItem("auth_token", token);
+        }
       });
     // console.log(JSON.stringify(data));
   };
@@ -70,7 +73,7 @@ export const Login = (input) => {
             },
           }}
         />
-
+        <p className={classes.labelErr}>{message}</p>
         <Button type="submit" variant="outlined">
           Login
         </Button>

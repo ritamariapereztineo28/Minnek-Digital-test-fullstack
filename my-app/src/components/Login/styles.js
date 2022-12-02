@@ -13,4 +13,8 @@ export default makeStyles((theme) => ({
   input: {
     margin: "2% 0 2% 0",
   },
+  labelErr:{
+    color:'red',
+    fontWeight:400
+  }
 }));

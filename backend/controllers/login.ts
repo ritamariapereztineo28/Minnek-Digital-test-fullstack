@@ -9,7 +9,7 @@ const comparePassword = (password: string, receivedPassword: string) => {
 export const login = async (req: any, res: any) => {
   try {
     const userFound = await User.findOne({ name: req.body.name });
-    if (!userFound) return res.status(400).json({ message: "User Not Found" });
+    if (!userFound) return res.status(400).json({ message: "Usuario no encontrado" });
 
     const matchPassword = await comparePassword(
       req.body.password,
@@ -18,7 +18,7 @@ export const login = async (req: any, res: any) => {
     if (!matchPassword)
       return res.status(401).json({
         token: null,
-        message: "Invalid Password",
+        message: "Contraseña incorrecta",
       });
 
     const token = jwt.sign({ id: userFound._id }, JWT_SECRET);
