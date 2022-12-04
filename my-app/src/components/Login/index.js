@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 import { post } from "../../fetch";
+import User from "../../helpers/User";
 
 export const Login = () => {
   const {
@@ -12,7 +13,15 @@ export const Login = () => {
   } = useForm();
   const classes = useStyles();
   const [message, setMessage] = useState("");
+  const localizedLogin =
+    window.location.pathname === "/login" || window.location.pathname === "/";
 
+  useEffect(() => {
+    if (User.getToken() && localizedLogin) {
+      window.location = "/form";
+    }
+  }, []);
+  
   const onSubmit = (data) => {
     post("/login", data)
       .then((res) => {

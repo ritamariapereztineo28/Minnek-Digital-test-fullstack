@@ -7,6 +7,10 @@ class User {
       return storedToken ? true : this.logout();
     }
   }
+  
+  getToken(){
+    return localStorage.getItem('auth_token')
+  }
 
   loggedIn() {
     return this.hasToken();

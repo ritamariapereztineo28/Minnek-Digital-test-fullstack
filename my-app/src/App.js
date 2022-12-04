@@ -17,13 +17,13 @@ function App() {
         case "Acceso denegado":
           User.logout();
           break;
-
         default:
           break;
       }
     };
     fetchAuthData();
   }, []);
+  
   return (
     <div className="App">
       <Switch>
