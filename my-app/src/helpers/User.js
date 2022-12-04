@@ -14,7 +14,9 @@ class User {
 
   logout() {
     localStorage.removeItem("auth_token");
-    window.location = "/login";
+    if (window.location.pathname !== "/login") {
+      window.location = "/login";
+    }
   }
 }
 export default new User();

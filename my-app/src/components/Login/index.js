@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
-import { Link, Redirect, useHistory } from "react-router-dom";
 import { post } from "../../fetch";
-import User from "../../helpers/User";
 
 export const Login = () => {
   const {
@@ -22,8 +20,8 @@ export const Login = () => {
       })
       .then(({ token, message }) => {
         setMessage(message);
-        localStorage.setItem("auth_token", token);
         if (token) {
+          localStorage.setItem("auth_token", token);
           window.location = "/form";
         }
       });

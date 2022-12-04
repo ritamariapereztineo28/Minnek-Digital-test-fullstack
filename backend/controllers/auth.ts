@@ -1,15 +1,10 @@
-const jwt = require("jsonwebtoken");
-const { JWT_SECRET } = require("../config-env");
-
-export const auth = async (req: any, res: any, next: any) => {
+const User = require("../database/models/user");
+export const auth = async (req: any, res: any) => {
+  const { id } = req.authEntity;
   try {
-    const token = req.headers.authorization;
-    // console.log('===========',req.headers.authorization)
-    // console.log("--------->",req.signedCookies.auth_token)
-    const authEntity = jwt.verify(token, JWT_SECRET);
-    Object.assign(req, { authEntity });
-    next();
+    const user = await User.findById(id);
+    res.send({ user });
   } catch (error) {
-    res.status(403).send({ message: "Acceso denegado" });
+    return res.status(500).send({ message: error });
   }
 };
