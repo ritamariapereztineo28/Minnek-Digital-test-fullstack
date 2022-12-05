@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "@material-ui/core";
+import { Card, Container } from "@material-ui/core";
 import useStyles from "./styles";
 import { get } from "../../fetch";
 import User from "../../helpers/User";
@@ -14,7 +14,7 @@ export const Products = () => {
         if (res.status === 403) {
           User.logout();
         }
-        return res.json()
+        return res.json();
       })
       .then((products) => setData(products));
   };
@@ -24,13 +24,20 @@ export const Products = () => {
 
   return (
     <>
+      <Container className={classes.dontHaveProduct} >
+        {data.length === 0 && (
+          <p1 >
+            No hay productos para mostrar
+          </p1>
+        )}
+      </Container>
       <div className={classes.container}>
         {data &&
           data.map(({ name, description }) => (
             <Card className={classes.card}>
               {/* <img className={classes.card} src={""} alt="Avatar" /> */}
-              <p className="name">{name}</p>
-              <p className="description">{description}</p>
+              <p className={classes.name}>{name}</p>
+              <p className={classes.description}>{description}</p>
             </Card>
           ))}
       </div>

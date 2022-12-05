@@ -23,4 +23,8 @@ export default makeStyles((theme) => ({
     fontSize: "18px",
     fontWeight: "600",
   },
+  dontHaveProduct: {
+    color: "#FFFFFF",
+    marginTop: "5%",
+  },
 }));
