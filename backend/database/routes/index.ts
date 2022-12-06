@@ -1,12 +1,12 @@
-import { addProduct } from "../../controllers/addProduct";
-import { getProducts } from "../../controllers/getProducts";
-import { login } from "../../controllers/login";
-import { authenticator } from "../authenticator";
-import { auth } from "../../controllers/auth";
-import { removeAllProducts } from "../../controllers/removeAllProducts";
-
+const { addProduct } = require("../../controllers/addProduct");
+const { getProducts } = require("../../controllers/getProducts");
+const { login } = require("../../controllers/login");
+const { authenticator } = require("../authenticator");
+const { auth } = require("../../controllers/auth");
+const { removeAllProducts } = require("../../controllers/removeAllProducts");
 const expRouter = require("express");
 const router = expRouter.Router();
+
 
 router.post("/auth", authenticator, auth);
 router.post("/product", authenticator, addProduct);

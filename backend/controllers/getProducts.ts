@@ -4,6 +4,6 @@ export const getProducts = (req: any, res: any) => {
   Products.find()
     .then((products: any) => res.send(products))
     .catch((err: any) => {
-      console.log("Esta dando un error: ", err);
+      console.log("Ha ocurrido un error: ", err);
     });
 };
