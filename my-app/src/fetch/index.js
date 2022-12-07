@@ -1,7 +1,8 @@
 const REACT_APP_LINK = process.env.REACT_APP_LINK;
 
 export const post = (url, body = {}) => {
-  const token = localStorage.getItem('auth_token')
+  const token = localStorage.getItem("auth_token");
+  console.log("----",body)
 
   const bodyOpts = {
     method: "POST",
@@ -10,7 +11,8 @@ export const post = (url, body = {}) => {
       "Access-Control-Allow-Origin": "*",
       auth_token: token,
       Authorization: token,
-      credentials: 'include',
+      credentials: "include",
+      // Boundary: "BbC04y",
       // 'mode': 'no-cors',
       // "crossorigin": true,
     },
@@ -20,7 +22,7 @@ export const post = (url, body = {}) => {
 };
 
 export const get = (url) => {
-  const token = localStorage.getItem('auth_token')
+  const token = localStorage.getItem("auth_token");
 
   const bodyOpts = {
     method: "GET",
@@ -28,7 +30,7 @@ export const get = (url) => {
       "Content-Type": "application/json",
       auth_token: token,
       Authorization: token,
-      credentials: 'include',
+      credentials: "include",
       // mode: 'no-cors',
     },
   };

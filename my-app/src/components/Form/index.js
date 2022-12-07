@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button, Card, TextField } from "@material-ui/core";
 import useStyles from "./styles";
 import { post } from "../../fetch";
 import User from "../../helpers/User";
+import { uploadFiles } from "../../helpers/uploadFiles";
 
 export const Form = () => {
   const {
@@ -12,13 +13,20 @@ export const Form = () => {
     formState: { errors },
   } = useForm();
   const classes = useStyles();
-
-  const onSubmit = (data) => {
+  const [image, setImage]=useState()
+  const onChangeInputTypeFile = (event)=>{
+    setImage(event)
+  }
+  const onSubmit = async (data) => {
+    const url = await uploadFiles(image);
+    console.log(url)
+    Object.assign(data, { imgUrl: url[0] });
+    console.log("Lo que salio--->",data)
     post("/product", data).then(({ status }) => {
       if (status === 403) {
         User.logout();
-      } else {
-        window.location = "/products";
+      // } else {
+      //   window.location = "/products";
       }
     });
   };
@@ -100,6 +108,28 @@ export const Form = () => {
               },
             }}
           />
+          {/* <Controller
+                name="imgUrl"
+
+            control={control}
+            render={({ field }) => ( */}
+              <TextField
+                className={classes.input}
+                id="outlined-basic"
+                type="file"
+                accept={".png, .jpg, .jpeg"}
+                // {...field}
+                fullWidth
+                variant="outlined"
+                onChange={(event)=>onChangeInputTypeFile(event.target.files)}
+                // error={Boolean(errors.imgUrl)}
+                // helperText={errors.imgUrl && errors.imgUrl.message}
+              />
+            {/* )}
+            rules={{
+              required: "Este campo es requerido",
+            }}
+          /> */}
 
           <Button type="submit" variant="outlined">
             Enviar
