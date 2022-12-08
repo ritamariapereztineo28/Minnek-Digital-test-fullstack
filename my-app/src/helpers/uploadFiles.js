@@ -22,11 +22,11 @@ export const uploadFiles = async (files) => {
   };
   
   // console.log("--------form-",formData)
-  const {image} = await fetch(
+  const image = await fetch(
         `${REACT_APP_LINK}/image`,
         bodyOpts
       ).then((res) => res.text());
-      console.log("--------jij",image)
+      console.log("--------/image-----",image)
 
       if (image) {
         url.push(image);

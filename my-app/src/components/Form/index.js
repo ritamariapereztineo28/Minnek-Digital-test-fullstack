@@ -19,9 +19,8 @@ export const Form = () => {
   }
   const onSubmit = async (data) => {
     const url = await uploadFiles(image);
-    console.log(url)
+    console.log("Lo que salio--->",url)
     Object.assign(data, { imgUrl: url[0] });
-    console.log("Lo que salio--->",data)
     post("/product", data).then(({ status }) => {
       if (status === 403) {
         User.logout();
