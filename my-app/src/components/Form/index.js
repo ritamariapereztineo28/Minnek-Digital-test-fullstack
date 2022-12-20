@@ -13,19 +13,18 @@ export const Form = () => {
     formState: { errors },
   } = useForm();
   const classes = useStyles();
-  const [image, setImage]=useState()
-  const onChangeInputTypeFile = (event)=>{
-    setImage(event)
-  }
+  const [image, setImage] = useState();
+  const onChangeInputTypeFile = (event) => {
+    setImage(event);
+  };
   const onSubmit = async (data) => {
     const url = await uploadFiles(image);
-    console.log("Lo que salio--->",url)
     Object.assign(data, { imgUrl: url[0] });
     post("/product", data).then(({ status }) => {
       if (status === 403) {
         User.logout();
-      // } else {
-      //   window.location = "/products";
+      } else {
+        window.location = "/products";
       }
     });
   };
@@ -107,28 +106,17 @@ export const Form = () => {
               },
             }}
           />
-          {/* <Controller
-                name="imgUrl"
-
-            control={control}
-            render={({ field }) => ( */}
-              <TextField
-                className={classes.input}
-                id="outlined-basic"
-                type="file"
-                accept={".png, .jpg, .jpeg"}
-                // {...field}
-                fullWidth
-                variant="outlined"
-                onChange={(event)=>onChangeInputTypeFile(event.target.files)}
-                // error={Boolean(errors.imgUrl)}
-                // helperText={errors.imgUrl && errors.imgUrl.message}
-              />
-            {/* )}
-            rules={{
-              required: "Este campo es requerido",
+          <TextField
+            className={classes.input}
+            id="outlined-basic"
+            type="file"
+            inputProps={{
+              accept: ".png, .jpg, .jpeg",
             }}
-          /> */}
+            fullWidth
+            variant="outlined"
+            onChange={(event) => onChangeInputTypeFile(event.target.files)}
+          />
 
           <Button type="submit" variant="outlined">
             Enviar

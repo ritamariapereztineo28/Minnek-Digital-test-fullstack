@@ -33,9 +33,9 @@ export const Products = () => {
       </Container>
       <div className={classes.container}>
         {data &&
-          data.map(({ name, description }) => (
+          data.map(({ name, description,imgUrl }) => (
             <Card className={classes.card}>
-              {/* <img className={classes.card} src={""} alt="Avatar" /> */}
+              <img src={imgUrl} alt="img" width={'100%'}/>
               <p className={classes.name}>{name}</p>
               <p className={classes.description}>{description}</p>
             </Card>

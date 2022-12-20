@@ -2,8 +2,6 @@ const REACT_APP_LINK = process.env.REACT_APP_LINK;
 
 export const post = (url, body = {}) => {
   const token = localStorage.getItem("auth_token");
-  console.log("----",body)
-
   const bodyOpts = {
     method: "POST",
     headers: {
@@ -12,9 +10,6 @@ export const post = (url, body = {}) => {
       auth_token: token,
       Authorization: token,
       credentials: "include",
-      // Boundary: "BbC04y",
-      // 'mode': 'no-cors',
-      // "crossorigin": true,
     },
     body: JSON.stringify(body),
   };
@@ -31,7 +26,6 @@ export const get = (url) => {
       auth_token: token,
       Authorization: token,
       credentials: "include",
-      // mode: 'no-cors',
     },
   };
   return fetch(`${REACT_APP_LINK}${url}`, bodyOpts);

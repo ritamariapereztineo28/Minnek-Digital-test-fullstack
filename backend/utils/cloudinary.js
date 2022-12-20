@@ -12,26 +12,10 @@ v2.config({
   secure: true,
 });
 
-const signUpload = async () => {
-  const timestamp = Math.round(Date() / 1000);
-  const params = {
-    timestamp: timestamp,
-  };
-  const signature = await v2.utils.api_sign_request(
-    params,
-    CLOUDINARY_API_SECRET
-  );
-
-  return { timestamp, signature };
-};
-
 const uploadImageCloud = async (filePath) => {
-  const { signature } = await signUpload();
-  console.log("signature----", signature);
   return await v2.uploader.upload(
     filePath,
     { folder: "replit-2022" },
-    signature
   );
 };
 module.exports = uploadImageCloud;
