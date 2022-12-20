@@ -56,6 +56,14 @@ export const Form = () => {
                 message:
                   "Este campo solo permite letras, no permite espacios al inicio o final de lo digitado",
               },
+              maxLength:{
+                value:30,
+                message:"Este campo tiene más de 30 caracteres"
+              },
+              minLength:{
+                value:5,
+                message:"Este campo debe tener min de 4 caracteres"
+              }
             }}
           />
           <Controller
@@ -104,6 +112,14 @@ export const Form = () => {
                 message:
                   "Este campo solo permite letras y números, no permite espacios al inicio o final de lo digitado",
               },
+              maxLength:{
+                value:160,
+                message:"Este campo tiene más de 160 caracteres"
+              },
+              minLength:{
+                value:8,
+                message:"Este campo debe tener min de 8 caracteres"
+              }
             }}
           />
           <TextField
