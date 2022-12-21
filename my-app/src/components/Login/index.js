@@ -14,14 +14,17 @@ export const Login = () => {
   const classes = useStyles();
   const [message, setMessage] = useState("");
   const localizedLogin =
-    window.location.pathname === "/login" || window.location.pathname === "/";
-
+    window.location.pathname === "/login" ||
+    window.location.pathname === "/"
   useEffect(() => {
     if (User.getToken() && localizedLogin) {
       window.location = "/form";
     }
+    if (!localizedLogin) {
+      window.location = "/form";
+    }
   }, []);
-  
+
   const onSubmit = (data) => {
     post("/login", data)
       .then((res) => {

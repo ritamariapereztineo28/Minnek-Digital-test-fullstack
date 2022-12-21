@@ -12,10 +12,11 @@ export default makeStyles((theme) => ({
     gridRow: "auto / span 2",
     display: "grid",
     alignItems: "unset",
-  },
-  img: {
-    border: "5px solid transparent",
+       border: "5px solid transparent",
     borderRadius: "1em",
+  },
+  imgUrl: {
+ 
     width: "100%",
     height: "200px",
   },
